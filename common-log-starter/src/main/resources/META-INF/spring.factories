@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.log.config.MethodLogConfig,\
+com.log.config.LogxConfig,\
+com.log.config.Person

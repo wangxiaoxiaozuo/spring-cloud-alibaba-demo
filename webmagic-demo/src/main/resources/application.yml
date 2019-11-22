@@ -1,0 +1,11 @@
+server:
+  port: 9004
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://10.0.0.204:3309/mall?useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  jpa:
+    database: mysql
+    show-sql: true

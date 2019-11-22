@@ -1,0 +1,23 @@
+server:
+  port: 9003
+spring:
+  application:
+    name: spring-cloud-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 10.0.0.204:8840
+    gateway:
+      routes:
+        - id: consumer-config
+          uri: lb://consumer-config
+          predicates:
+            - Method=GET,POST,PUT,DELETE
+      discovery:
+        locator:
+          enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
