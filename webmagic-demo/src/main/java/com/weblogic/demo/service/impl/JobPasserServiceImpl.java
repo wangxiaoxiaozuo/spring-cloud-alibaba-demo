@@ -2,14 +2,16 @@ package com.weblogic.demo.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.weblogic.demo.dto.JobInfo;
-import com.weblogic.demo.repository.JobInfoRepository;
+import com.weblogic.demo.repository.mysql.JobInfoRepository;
 import com.weblogic.demo.service.JobPasserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
+import us.codecraft.webmagic.Spider;
 
+import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 /**
  * @program mall
@@ -23,6 +25,13 @@ public class JobPasserServiceImpl implements JobPasserService {
 
     @Autowired
     private JobInfoRepository jobInfoRepository;
+
+    @Autowired
+    private Spider spider;
+
+    @Resource
+    private Executor executor;
+
 
     @Override
     public void saveJobInfo(JobInfo jobInfo) {
@@ -41,5 +50,15 @@ public class JobPasserServiceImpl implements JobPasserService {
     public List<JobInfo> getList(JobInfo jobInfo) {
         Example<JobInfo> example = Example.of(jobInfo);
         return jobInfoRepository.findAll(example);
+    }
+
+    @Override
+    public void startJob() {
+        executor.execute(() -> spider.run());
+    }
+
+    @Override
+    public void stopJob() {
+        executor.execute(() -> spider.stop());
     }
 }

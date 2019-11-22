@@ -1,4 +1,4 @@
-package com.weblogic.demo.repository;
+package com.weblogic.demo.repository.mysql;
 
 import com.weblogic.demo.dto.JobInfo;
 import org.springframework.data.jpa.repository.JpaRepository;

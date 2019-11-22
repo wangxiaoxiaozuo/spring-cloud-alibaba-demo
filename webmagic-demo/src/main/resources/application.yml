@@ -9,3 +9,7 @@ spring:
   jpa:
     database: mysql
     show-sql: true
+  data:
+    elasticsearch:
+      cluster-name: docker-cluster
+      cluster-nodes: 10.0.0.204:9300

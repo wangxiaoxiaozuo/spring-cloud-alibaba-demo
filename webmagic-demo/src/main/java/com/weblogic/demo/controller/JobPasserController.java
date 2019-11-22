@@ -1,5 +1,6 @@
 package com.weblogic.demo.controller;
 
+import com.weblogic.demo.service.JobPasserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,18 +17,20 @@ import us.codecraft.webmagic.Spider;
 @RequestMapping("/spider")
 public class JobPasserController {
 
+
     @Autowired
-    private Spider spider;
+    private JobPasserService jobPasserService;
+
 
     @GetMapping("/start")
     public String startSpider() {
-        spider.run();
+        jobPasserService.startJob();
         return "Spider is start ....";
     }
 
     @GetMapping("/stop")
     public String stopSpider() {
-        spider.stop();
+        jobPasserService.stopJob();
         return "Spider is stop ....";
     }
 
