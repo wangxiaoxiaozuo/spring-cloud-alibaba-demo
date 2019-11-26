@@ -44,20 +44,20 @@ public class JobProxyProcesser implements PageProcessor {
                 .setRetryTimes(3);
     }
 
-    public static void main(String[] args) {
-
-        HttpClientDownloader httpClientDownloader = new HttpClientDownloader();
-        httpClientDownloader.setProxyProvider(
-                SimpleProxyProvider.from(new Proxy("85.113.38.197", 8080),
-                        new Proxy("106.14.144.179", 80),
-                        new Proxy("177.87.10.186", 8080)));
-        new Spider(new JobProxyProcesser())
-                .addUrl("http://mip.chinaz.com/?query=")
-                .setDownloader(httpClientDownloader)
-                .setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(10 * 10000)))
-                .thread(5)
-                .run();
-
-
-    }
+//    public static void main(String[] args) {
+//
+//        HttpClientDownloader httpClientDownloader = new HttpClientDownloader();
+//        httpClientDownloader.setProxyProvider(
+//                SimpleProxyProvider.from(new Proxy("85.113.38.197", 8080),
+//                        new Proxy("106.14.144.179", 80),
+//                        new Proxy("177.87.10.186", 8080)));
+//        new Spider(new JobProxyProcesser())
+//                .addUrl("http://mip.chinaz.com/?query=")
+//                .setDownloader(httpClientDownloader)
+//                .setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(10 * 10000)))
+//                .thread(5)
+//                .run();
+//
+//
+//    }
 }

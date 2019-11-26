@@ -3,7 +3,9 @@ package com.weblogic.demo.handler;
 import com.weblogic.demo.constant.JobConstant;
 import com.weblogic.demo.dto.JobInfo;
 import com.weblogic.demo.service.JobPasserService;
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.PriorityOrdered;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
@@ -16,7 +18,7 @@ import us.codecraft.webmagic.pipeline.Pipeline;
  * @create: 2019/11/22 10:16:01
  */
 @Component
-public class JobResultMySqlHandler implements Pipeline {
+public class JobResultMySqlHandler implements Pipeline{
 
     @Autowired
     private JobPasserService jobPasserService;
@@ -28,4 +30,5 @@ public class JobResultMySqlHandler implements Pipeline {
             jobPasserService.saveJobInfo(jobInfo);
         }
     }
+
 }

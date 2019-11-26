@@ -12,4 +12,4 @@ spring:
   data:
     elasticsearch:
       cluster-name: docker-cluster
-      cluster-nodes: 10.0.0.204:9300
+      cluster-nodes: 10.0.0.204:9302
