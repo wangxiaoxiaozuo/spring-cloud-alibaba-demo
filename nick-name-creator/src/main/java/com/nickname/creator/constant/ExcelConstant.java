@@ -12,6 +12,7 @@ package com.nickname.creator.constant;
  */
 public class ExcelConstant {
 
-    public static final String EXCEL_PATH = "/Users/wangjian/Desktop/新建 XLS 工作表.xls";
+    public static final String NEW_EXCEL_PATH = "/Users/wangjian/Desktop/nickname.xls";
+
 
 }

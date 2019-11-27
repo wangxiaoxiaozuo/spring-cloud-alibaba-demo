@@ -1,8 +1,6 @@
 package com.nickname.creator.dto;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
-import cn.afterturn.easypoi.excel.annotation.ExcelEntity;
-import cn.afterturn.easypoi.excel.annotation.ExcelTarget;
 import lombok.Data;
 import lombok.ToString;
 

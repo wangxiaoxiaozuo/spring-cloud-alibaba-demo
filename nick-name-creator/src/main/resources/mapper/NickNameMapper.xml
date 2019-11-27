@@ -15,4 +15,16 @@
         update owner_user set nickName = #{nickName} where userId = #{userId}
     </update>
 
+    <update id="updateNickNameByBatch" parameterType="list">
+        <foreach collection="list" item="bean" index="index" open="" close="" separator=";">
+            UPDATE owner_user
+            <set>
+                nickName = #{bean.nickName}
+            </set>
+            <where>
+                userId = #{bean.userId}
+            </where>
+        </foreach>
+    </update>
+
 </mapper>

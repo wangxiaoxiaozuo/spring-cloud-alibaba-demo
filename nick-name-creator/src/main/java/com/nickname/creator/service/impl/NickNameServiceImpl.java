@@ -1,11 +1,14 @@
 package com.nickname.creator.service.impl;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.convert.Convert;
 import com.nickname.creator.config.InitConfig;
+import com.nickname.creator.dto.OwnerUserDto;
 import com.nickname.creator.mapper.NickNameMapper;
 import com.nickname.creator.service.NickNameService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
@@ -76,6 +79,7 @@ public class NickNameServiceImpl implements NickNameService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void updateNickNameByGroup() {
         // 获取没有nickName的用户数量
         Integer unlessNickNameCount = nickNameMapper.getUnlessNickNameCount();
@@ -91,9 +95,14 @@ public class NickNameServiceImpl implements NickNameService {
             List<Long> unlessNickNameUserId = nickNameMapper.getUnlessNickNameUserId((i - 1) * 50);
 
             taskExecutor.execute(() -> {
+
+                List<OwnerUserDto> list = new ArrayList<>();
                 unlessNickNameUserId.forEach(userId ->
-                        nickNameMapper.updateNickNameByUserId(getNickName(), userId)
+                        list.add(new OwnerUserDto(userId, getNickName()))
                 );
+                if (CollectionUtil.isNotEmpty(list)) {
+                    nickNameMapper.updateNickNameByBatch(list);
+                }
                 countDownLatch.countDown();
             });
 
