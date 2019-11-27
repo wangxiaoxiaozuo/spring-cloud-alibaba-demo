@@ -1,6 +1,4 @@
 # Java技术栈学习
- 
-我的博客^_^: [博客链接](https://blog.csdn.net/Yue_zuozuo/article/details/103064802)
 
 ## SpringAlibaba 基础学习
 
