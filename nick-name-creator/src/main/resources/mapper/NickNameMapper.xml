@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nickname.creator.mapper.NickNameMapper">
+
+
+    <select id="getUnlessNickNameUserId" resultType="long" parameterType="integer">
+       SELECT userId FROM owner_user WHERE nickName is NULL limit #{page},50
+    </select>
+
+    <select id="getUnlessNickNameCount" resultType="integer">
+         SELECT count(1) FROM owner_user WHERE nickName is NULL
+    </select>
+
+    <update id="updateNickNameByUserId">
+        update owner_user set nickName = #{nickName} where userId = #{userId}
+    </update>
+
+</mapper>
