@@ -2,6 +2,7 @@ package com.nickname.creator.config;
 
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
+import cn.hutool.core.util.StrUtil;
 import com.nickname.creator.constant.ExcelConstant;
 import com.nickname.creator.dto.NickNameRuleExcelDto;
 import org.springframework.context.annotation.Configuration;
@@ -39,14 +40,11 @@ public class InitConfig {
             //获取去重后数据
             nickNamePrefix = list.stream()
                     .map(NickNameRuleExcelDto::getNickNamePrefix)
-                    .distinct()
+                    .filter(StrUtil::isNotBlank)
                     .collect(Collectors.toList());
             nickNameSuffix = list.stream()
                     .map(NickNameRuleExcelDto::getNickNameSuffix)
-                    .distinct()
                     .collect(Collectors.toList());
-            System.out.println(nickNamePrefix.size());
-            System.out.println(nickNameSuffix.size());
         }
     }
 
