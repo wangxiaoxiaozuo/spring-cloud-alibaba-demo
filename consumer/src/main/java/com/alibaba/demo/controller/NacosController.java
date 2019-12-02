@@ -3,6 +3,8 @@ package com.alibaba.demo.controller;
 import com.log.annontation.MethodLog;
 import com.alibaba.demo.service.ConsumerService;
 import com.log.annontation.MethodLogX;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
+
 /**
  * @program mall
  * @description:
@@ -18,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
  * @create: 2019/11/14 16:22:39
  */
 @RestController
+@Api(tags = "消费者测试接口")
 public class NacosController {
 
     @Autowired
@@ -26,7 +31,7 @@ public class NacosController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
+    @Resource
     private ConsumerService consumerService;
 
 
@@ -52,6 +57,7 @@ public class NacosController {
     @GetMapping("/echo/hi")
     @MethodLog
     @MethodLogX
+    @ApiOperation("测试连接服务端")
     public String sayHello() {
         return consumerService.echo(appName);
     }

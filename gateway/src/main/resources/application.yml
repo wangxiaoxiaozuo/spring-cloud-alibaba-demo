@@ -13,6 +13,10 @@ spring:
           uri: lb://consumer-config
           predicates:
             - Method=GET,POST,PUT,DELETE
+        - id: consumer-ticker
+          uri: lb://consumer-ticker
+          predicates:
+            - Method=GET,POST,PUT,DELETE
       discovery:
         locator:
           enabled: true
