@@ -1,0 +1,11 @@
+server:
+  port: 9005
+  servlet:
+    context-path: /job_search
+spring:
+  data:
+    elasticsearch:
+      cluster-name: docker-cluster
+      cluster-nodes: 10.0.0.204:9302
+  application:
+    name: job_search

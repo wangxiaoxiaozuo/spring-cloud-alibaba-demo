@@ -10,12 +10,14 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>provider</module>
-        <module>consumer</module>
-        <module>gateway</module>
+        <module>mall-admin</module>
+        <module>mall-gateway</module>
         <module>common-log-starter</module>
-        <module>webmagic-demo</module>
-        <module>nick-name-creator</module>
-        <module>check-ticket-demo</module>
+        <module>mall-data-collect</module>
+        <module>mall-code-generator</module>
+        <module>mall-search</module>
+        <module>mall-pay-center</module>
+        <module>mall-user-center</module>
     </modules>
 
 
@@ -39,6 +41,7 @@
         <hutool.version>4.6.1</hutool.version>
         <p6spy.version>3.8.5</p6spy.version>
         <swagger.version>2.9.2</swagger.version>
+        <mybatis.plus.generator.version>3.2.0</mybatis.plus.generator.version>
 
     </properties>
 

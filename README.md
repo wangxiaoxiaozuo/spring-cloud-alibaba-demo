@@ -18,6 +18,20 @@
 ## 整合ElasticSearch
 
 ## spring cloud gateway 聚合swagger
+
+## 重构目录结构，偏向商城结构发展
+
+── mall
+   ├── common-log-starter      自定义starter 日志切面
+   ├── mall-admin              商城管理后台
+   ├── mall-code-generator     mybatis-plus 代码生成器
+   ├── mall-data-collect       集成webMagic爬虫技术做数据采集使用
+   ├── mall-gateway            路由网关
+   ├── mall-pay-center         支付中心
+   ├── mall-search             集成ElasticSearch搜索功能
+   ├── mall-user-center        用户认证中心
+   ├── provider                后续~~~~
+   └── skywalking-agent        skyWalking 探针
  
 
 

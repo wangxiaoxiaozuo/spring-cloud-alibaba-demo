@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://10.0.0.202:3306/yll_db?useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: yll_user
+    password: yll_user123
