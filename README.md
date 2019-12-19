@@ -20,7 +20,7 @@
 ## spring cloud gateway 聚合swagger
 
 ## 重构目录结构，偏向商城结构发展
-
+```html
 ── mall
    ├── common-log-starter      自定义starter 日志切面
    ├── mall-admin              商城管理后台
@@ -32,6 +32,8 @@
    ├── mall-user-center        用户认证中心
    ├── provider                后续~~~~
    └── skywalking-agent        skyWalking 探针
+```
+
  
 
 
