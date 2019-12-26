@@ -52,7 +52,7 @@ public class GeneratorApplication {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        String projectPath = System.getProperty("user.dir") + "/mybatisplus-code-generator";
+        String projectPath = System.getProperty("user.dir") + "/mall-code-generator";
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor(GeneratorConstant.AUTHOR_NAME);
         gc.setOpen(false);
@@ -61,11 +61,14 @@ public class GeneratorApplication {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://10.0.0.202:3306/yll_db?useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true");
+        dsc.setUrl("jdbc:mysql://10.0.0.204:3309/mall?useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true");
+//        dsc.setUrl("jdbc:mysql://10.0.0.202:3306/yll_ecmall?useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-        dsc.setUsername("yll_user");
-        dsc.setPassword("yll_user123");
+//        dsc.setUsername("yll_user");
+//        dsc.setPassword("yll_user123");
+        dsc.setUsername("root");
+        dsc.setPassword("root");
         mpg.setDataSource(dsc);
 
         // 包配置

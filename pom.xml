@@ -18,6 +18,7 @@
         <module>mall-search</module>
         <module>mall-pay-center</module>
         <module>mall-user-center</module>
+        <module>mall-common</module>
     </modules>
 
 
@@ -42,6 +43,7 @@
         <p6spy.version>3.8.5</p6spy.version>
         <swagger.version>2.9.2</swagger.version>
         <mybatis.plus.generator.version>3.2.0</mybatis.plus.generator.version>
+        <p6spy.version>3.8.5</p6spy.version>
 
     </properties>
 
@@ -61,6 +63,17 @@
                 <version>${spring.cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <!-- swagger-ui -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

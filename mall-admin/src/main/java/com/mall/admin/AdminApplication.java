@@ -1,6 +1,6 @@
-package com.alibaba.demo;
+package com.mall.admin;
 
-import com.alibaba.demo.service.fallback.ConsumerServiceFallback;
+import com.common.web.handler.GlobalExceptionHandler;
 import com.log.aspect.LogAspect;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,19 +10,14 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * @program mall
- * @description:
- * @author: wangjian
- * @create: 2019/11/14 16:21:20
- */
+
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-public class Consumer {
+public class AdminApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Consumer.class, args);
+        SpringApplication.run(AdminApplication.class, args);
     }
 
 
@@ -36,6 +31,11 @@ public class Consumer {
     @Bean
     public LogAspect getLog() {
         return new LogAspect();
+    }
+
+    @Bean
+    public GlobalExceptionHandler globalExceptionHandler(){
+        return new GlobalExceptionHandler();
     }
 
 }

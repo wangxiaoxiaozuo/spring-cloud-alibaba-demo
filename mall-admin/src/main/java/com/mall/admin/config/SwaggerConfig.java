@@ -1,4 +1,4 @@
-package com.alibaba.demo.config;
+package com.mall.admin.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
