@@ -1,7 +1,7 @@
 package com.mall.admin.service;
 
+import com.mall.admin.entity.MallCategory;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.mall.admin.entity.Category;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.mall.admin.entity.Category;
  * </p>
  *
  * @author wangjian
- * @since 2019-12-19
+ * @since 2020-01-02
  */
-public interface CategoryService extends IService<Category> {
+public interface IMallCategoryService extends IService<MallCategory> {
 
 }

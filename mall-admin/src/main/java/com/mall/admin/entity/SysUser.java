@@ -1,6 +1,7 @@
 package com.mall.admin.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
@@ -10,6 +11,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -32,7 +34,7 @@ public class SysUser implements Serializable {
      * 登录用户名
      */
     @NotNull(message = "用户名不能为空")
-    @Length(min = 3, max = 10, message = "用户名在3~10个字符之间")
+    @Length(min = 3, max = 20, message = "用户名在3~10个字符之间")
     private String userName;
 
     /**
@@ -82,6 +84,9 @@ public class SysUser implements Serializable {
      */
     @TableLogic
     private String deleted;
+
+    @TableField(exist = false)
+    private List<Integer> roleIds;
 
 
 }

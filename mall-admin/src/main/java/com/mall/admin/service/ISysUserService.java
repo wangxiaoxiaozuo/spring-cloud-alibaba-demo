@@ -13,4 +13,7 @@ import com.mall.admin.entity.SysUser;
  */
 public interface ISysUserService extends IService<SysUser> {
 
+    void addSysUser(SysUser sysUser);
+
+    void updateSysUser(SysUser sysUser);
 }

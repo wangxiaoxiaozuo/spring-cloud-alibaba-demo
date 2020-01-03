@@ -56,25 +56,27 @@ public class GeneratorApplication {
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor(GeneratorConstant.AUTHOR_NAME);
         gc.setOpen(false);
-        // gc.setSwagger2(true); 实体属性 Swagger2 注解
+        gc.setSwagger2(true);
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setUrl("jdbc:mysql://10.0.0.204:3309/mall?useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true");
-//        dsc.setUrl("jdbc:mysql://10.0.0.202:3306/yll_ecmall?useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true");
-        // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-//        dsc.setUsername("yll_user");
-//        dsc.setPassword("yll_user123");
         dsc.setUsername("root");
         dsc.setPassword("root");
         mpg.setDataSource(dsc);
 
+//        dsc.setUrl("jdbc:mysql://10.0.0.202:3306/yll_ecmall?useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true");
+//        dsc.setSchemaName("public");
+//        dsc.setUsername("yll_user");
+//        dsc.setPassword("yll_user123");
+
+
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName(scanner("模块名"));
-        pc.setParent("mybatis.code.generator");
+        pc.setModuleName("admin");
+        pc.setParent("com.mall");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -120,8 +122,8 @@ public class GeneratorApplication {
         // 配置自定义输出模板
         //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
         // templateConfig.setEntity("templates/entity2.java");
-        // templateConfig.setService();
-        // templateConfig.setController();
+//         templateConfig.setService();
+//         templateConfig.setController();
 
         templateConfig.setXml(null);
         mpg.setTemplate(templateConfig);
@@ -130,11 +132,11 @@ public class GeneratorApplication {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategy.setSuperEntityClass("com.baomidou.ant.common.BaseEntity");
+//        strategy.setSuperEntityClass("com.baomidou.ant.common.BaseEntity");
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
         // 公共父类
-        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
+//        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
         // 写于父类中的公共字段
         strategy.setSuperEntityColumns("id");
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));

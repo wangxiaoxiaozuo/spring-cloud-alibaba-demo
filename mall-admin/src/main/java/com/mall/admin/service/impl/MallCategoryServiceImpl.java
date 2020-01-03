@@ -1,9 +1,9 @@
 package com.mall.admin.service.impl;
 
+import com.mall.admin.entity.MallCategory;
+import com.mall.admin.mapper.MallCategoryMapper;
+import com.mall.admin.service.IMallCategoryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.mall.admin.entity.Category;
-import com.mall.admin.mapper.CategoryMapper;
-import com.mall.admin.service.CategoryService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author wangjian
- * @since 2019-12-19
+ * @since 2020-01-02
  */
 @Service
-public class TbCategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements CategoryService {
+public class MallCategoryServiceImpl extends ServiceImpl<MallCategoryMapper, MallCategory> implements IMallCategoryService {
 
 }

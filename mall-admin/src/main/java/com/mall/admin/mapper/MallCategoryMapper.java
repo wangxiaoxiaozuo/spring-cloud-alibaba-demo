@@ -1,9 +1,7 @@
 package com.mall.admin.mapper;
 
-
+import com.mall.admin.entity.MallCategory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.mall.admin.entity.Category;
-import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,9 +9,8 @@ import org.apache.ibatis.annotations.Mapper;
  * </p>
  *
  * @author wangjian
- * @since 2019-12-19
+ * @since 2020-01-02
  */
-@Mapper
-public interface CategoryMapper extends BaseMapper<Category> {
+public interface MallCategoryMapper extends BaseMapper<MallCategory> {
 
 }
