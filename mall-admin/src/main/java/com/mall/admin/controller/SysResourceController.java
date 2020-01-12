@@ -2,15 +2,13 @@ package com.mall.admin.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mall.admin.entity.SysResource;
-import com.mall.admin.entity.common.PageParams;
-import com.mall.admin.entity.vo.MenuTreeVo;
 import com.mall.admin.entity.vo.MenuVo;
 import com.mall.admin.enums.MenuTypeEnum;
 import com.mall.admin.service.ISysResourceService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -26,53 +24,52 @@ import java.util.List;
 @RestController
 @RequestMapping("/sysResource")
 @AllArgsConstructor
+@Api(tags = "菜单管理")
 public class SysResourceController {
 
     private ISysResourceService sysResourceService;
 
-    @GetMapping("/page")
-    public IPage<SysResource> getResourcePage(PageParams pageParams) {
-        Page<SysResource> sysResourcePage = new Page<>(pageParams.getPage(), pageParams.getSize());
-        return sysResourceService.page(sysResourcePage);
-    }
-
     @GetMapping("/root")
     public List<SysResource> getRootMenu() {
         LambdaQueryWrapper<SysResource> wrapper =
-                Wrappers.<SysResource>lambdaQuery()
-                        .eq(SysResource::getType, MenuTypeEnum.CATALOG.getTypeCode())
-                        .orderByAsc(SysResource::getSort);
+            Wrappers.<SysResource>lambdaQuery()
+                .eq(SysResource::getType, MenuTypeEnum.CATALOG.getTypeCode())
+                .orderByAsc(SysResource::getSort);
         return sysResourceService.list(wrapper);
     }
 
     @PostMapping
+    @ApiOperation("添加菜单")
     public void addSysResource(@Validated @RequestBody SysResource sysResource) {
         sysResourceService.save(sysResource);
     }
 
-    @PutMapping("/{menuId}")
-    public void updateSysResource(@Validated @RequestBody SysResource sysResource, @PathVariable Integer menuId) {
-        sysResource.setMenuId(menuId);
-        sysResourceService.updateById(sysResource);
-    }
-
     @DeleteMapping("/{menuId}")
+    @ApiOperation("删除菜单")
     public void deleteSysResource(@PathVariable Integer menuId) {
         sysResourceService.removeById(menuId);
     }
 
-    @GetMapping("/menu")
-    public List<MenuTreeVo> getMenuTree(){
-        return sysResourceService.getMenuTree();
-    }
-
-
     @GetMapping("/menuList")
-    public List<MenuVo> getMenuList(){
+    @ApiOperation("获取菜单列表")
+    public List<MenuVo> getMenuList() {
         return sysResourceService.getMenuList();
     }
 
+    @GetMapping("/{userId}/menuList")
+    @ApiOperation("获取用户自己的菜单列表")
+    public List<MenuVo> getOwnMenuByUserId(@PathVariable Integer userId) {
+        return sysResourceService.getOwnMenuByUserId(userId);
+    }
 
+    @GetMapping("/routerList")
+    @ApiOperation("获取动态路由")
+    public List<SysResource> getRouterList(){
+        LambdaQueryWrapper<SysResource> wrapper =
+            Wrappers.<SysResource>lambdaQuery()
+                .eq(SysResource::getType, MenuTypeEnum.MENU.getTypeCode());
+        return sysResourceService.list(wrapper);
+    }
 
 
 }

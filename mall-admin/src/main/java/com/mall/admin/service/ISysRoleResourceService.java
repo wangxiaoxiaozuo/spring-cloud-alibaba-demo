@@ -1,13 +1,13 @@
 package com.mall.admin.service;
 
-import com.mall.admin.entity.SysRoleResource;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mall.admin.entity.SysRoleResource;
 
 import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wangjian

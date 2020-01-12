@@ -1,11 +1,11 @@
 package com.mall.admin.mapper;
 
-import com.mall.admin.entity.SysResource;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.mall.admin.entity.SysResource;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author wangjian

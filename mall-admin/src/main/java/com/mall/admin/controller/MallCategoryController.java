@@ -2,7 +2,6 @@ package com.mall.admin.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -14,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-01-02
  */
 @RestController
-@RequestMapping("/admin/mall-category")
+@RequestMapping("/admin/category")
 public class MallCategoryController {
+
 
 }

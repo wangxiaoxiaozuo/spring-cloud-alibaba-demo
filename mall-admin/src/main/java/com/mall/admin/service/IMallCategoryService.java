@@ -1,7 +1,7 @@
 package com.mall.admin.service;
 
-import com.mall.admin.entity.MallCategory;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mall.admin.entity.MallCategory;
 
 /**
  * <p>

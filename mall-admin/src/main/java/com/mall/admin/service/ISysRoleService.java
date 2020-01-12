@@ -5,7 +5,7 @@ import com.mall.admin.entity.SysRole;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wangjian
@@ -14,4 +14,6 @@ import com.mall.admin.entity.SysRole;
 public interface ISysRoleService extends IService<SysRole> {
 
     void deleteRoleById(Integer roleId);
+
+    void addRole(SysRole sysRole);
 }

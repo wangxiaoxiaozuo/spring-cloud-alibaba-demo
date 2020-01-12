@@ -1,6 +1,5 @@
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @program mall
@@ -11,10 +10,6 @@ import org.springframework.context.annotation.Configuration;
 @Configurable
 @ComponentScan("com.shadow")
 public class Config {
-
-
-
-
 
 
 }

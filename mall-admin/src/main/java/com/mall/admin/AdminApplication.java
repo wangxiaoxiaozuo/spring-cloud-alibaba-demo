@@ -34,7 +34,7 @@ public class AdminApplication {
     }
 
     @Bean
-    public GlobalExceptionHandler globalExceptionHandler(){
+    public GlobalExceptionHandler globalExceptionHandler() {
         return new GlobalExceptionHandler();
     }
 

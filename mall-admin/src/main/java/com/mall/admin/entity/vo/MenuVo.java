@@ -46,5 +46,5 @@ public class MenuVo {
     private String type;
 
     @ApiModelProperty(value = "子集菜单")
-    private List<MenuTreeVo> children;
+    private List<MenuVo> children;
 }

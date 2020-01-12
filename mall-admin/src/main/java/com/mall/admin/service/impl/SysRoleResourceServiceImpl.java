@@ -2,11 +2,11 @@ package com.mall.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.common.web.utils.VerifyException;
 import com.mall.admin.entity.SysRoleResource;
 import com.mall.admin.mapper.SysRoleResourceMapper;
 import com.mall.admin.service.ISysRoleResourceService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,14 +30,14 @@ public class SysRoleResourceServiceImpl extends ServiceImpl<SysRoleResourceMappe
         //先删除 然后重新授权
         VerifyException.CollectIsNull(menuIds, "未选择权限");
         LambdaQueryWrapper<SysRoleResource> eq =
-                Wrappers.<SysRoleResource>lambdaQuery()
-                        .eq(SysRoleResource::getRoleId, roleId);
+            Wrappers.<SysRoleResource>lambdaQuery()
+                .eq(SysRoleResource::getRoleId, roleId);
         this.baseMapper.delete(eq);
         List<SysRoleResource> list = new ArrayList<>();
         menuIds.forEach(s ->
             list.add(new SysRoleResource()
-                    .setRoleId(roleId)
-                    .setResourceId(s))
+                .setRoleId(roleId)
+                .setResourceId(s))
         );
         this.saveBatch(list);
     }

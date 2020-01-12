@@ -1,7 +1,6 @@
 package com.mall.admin.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
@@ -11,7 +10,6 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * <p>
@@ -77,16 +75,12 @@ public class SysUser implements Serializable {
     /**
      * 0-正常，1-锁定
      */
-    private String locked;
+    private Integer locked;
 
     /**
      * 0-正常，1-删除
      */
     @TableLogic
     private String deleted;
-
-    @TableField(exist = false)
-    private List<Integer> roleIds;
-
 
 }

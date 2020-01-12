@@ -1,9 +1,9 @@
 package com.mall.admin.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mall.admin.entity.MallCategory;
 import com.mall.admin.mapper.MallCategoryMapper;
 import com.mall.admin.service.IMallCategoryService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

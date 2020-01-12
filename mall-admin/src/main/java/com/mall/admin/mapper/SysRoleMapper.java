@@ -5,7 +5,7 @@ import com.mall.admin.entity.SysRole;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author wangjian

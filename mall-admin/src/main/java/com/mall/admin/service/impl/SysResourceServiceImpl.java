@@ -4,11 +4,15 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mall.admin.entity.SysResource;
+import com.mall.admin.entity.SysRole;
 import com.mall.admin.entity.vo.MenuTreeVo;
 import com.mall.admin.entity.vo.MenuVo;
 import com.mall.admin.enums.MenuTypeEnum;
 import com.mall.admin.mapper.SysResourceMapper;
+import com.mall.admin.mapper.SysUserMapper;
 import com.mall.admin.service.ISysResourceService;
+import com.mall.admin.utils.Constants;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,19 +30,22 @@ import java.util.stream.Collectors;
 @Service
 public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysResource> implements ISysResourceService {
 
+    @Autowired
+    private SysUserMapper sysUserMapper;
+
     @Override
     public List<MenuTreeVo> getMenuTree() {
         List<SysResource> sysResources = baseMapper.selectList(null);
         //加载根节点
         List<SysResource> collect = sysResources
-                .stream()
-                .filter(s -> Integer.parseInt(s.getType()) == MenuTypeEnum.CATALOG.getTypeCode())
-                .collect(Collectors.toList());
+            .stream()
+            .filter(s -> Integer.parseInt(s.getType()) == MenuTypeEnum.CATALOG.getTypeCode())
+            .collect(Collectors.toList());
         List<MenuTreeVo> list = new ArrayList<>();
         list.add(new MenuTreeVo()
-                .setLabel("根节点")
-                .setValue(0)
-                .setChildren(createNode(collect, sysResources)));
+            .setLabel("根节点")
+            .setValue(0)
+            .setChildren(createNode(collect, sysResources)));
         return list;
     }
 
@@ -50,8 +57,8 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
     private List<MenuTreeVo> getChildren(List<SysResource> sysResources, Integer parentId) {
         // 获取该父节点的所有子节点
         List<SysResource> collect = sysResources.stream()
-                .filter(menu -> menu.getParentId().equals(parentId))
-                .collect(Collectors.toList());
+            .filter(menu -> menu.getParentId().equals(parentId))
+            .collect(Collectors.toList());
         List<MenuTreeVo> list = new ArrayList<>();
         //转换为指定类型
         if (CollUtil.isNotEmpty(collect) && collect.size() > 0) {
@@ -64,8 +71,8 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
         List<MenuTreeVo> list = new ArrayList<>();
         collect.forEach(menu -> {
             MenuTreeVo menuTreeVo = new MenuTreeVo()
-                    .setValue(menu.getMenuId())
-                    .setLabel(menu.getLabel());
+                .setValue(menu.getMenuId())
+                .setLabel(menu.getLabel());
             List<MenuTreeVo> children = getChildren(sysResources, menu.getMenuId());
             if (CollUtil.isNotEmpty(children)) {
                 menuTreeVo.setChildren(children);
@@ -80,12 +87,41 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
         // 获取所有菜单
         List<SysResource> sysResources = baseMapper.selectList(null);
         // 获取所有根节点  SysResource --> MenuVo
-        List<MenuVo> collect = sysResources
+        return createMevoList(sysResources);
+    }
+
+
+    private List<MenuVo> getMenuVoChildren(List<SysResource> sysResources, Integer parenId) {
+        return sysResources.stream()
+            .filter(menu -> menu.getParentId().equals(parenId))
+            .map(s -> BeanUtil.toBean(s, MenuVo.class))
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<MenuVo> getOwnMenuByUserId(Integer userId) {
+        // 获取用户的权限 如果包含ROLE_ADMIN
+        List<SysResource> ownMenuList;
+        List<String> roleAdmin =
+            sysUserMapper.getRoleList(userId)
                 .stream()
-                .filter(s -> Integer.parseInt(s.getType()) == MenuTypeEnum.CATALOG.getTypeCode())
-                .map(s -> BeanUtil.toBean(s, MenuVo.class))
-                .peek(s -> s.setChildren(getChildren(sysResources, s.getMenuId())))
+                .map(SysRole::getRoleCode)
+                .filter(Constants.ROLE_ADMIN::equals)
                 .collect(Collectors.toList());
-        return collect;
+        if (CollUtil.isNotEmpty(roleAdmin)) {
+            ownMenuList = baseMapper.selectList(null);
+        } else {
+            ownMenuList = sysUserMapper.getOwnMenuByUserId(userId);
+        }
+        return createMevoList(ownMenuList);
+    }
+
+    public List<MenuVo> createMevoList(List<SysResource> sysResources) {
+        return sysResources
+            .stream()
+            .filter(s -> Integer.parseInt(s.getType()) == MenuTypeEnum.CATALOG.getTypeCode())
+            .map(s -> BeanUtil.toBean(s, MenuVo.class))
+            .peek(s -> s.setChildren(getMenuVoChildren(sysResources, s.getMenuId())))
+            .collect(Collectors.toList());
     }
 }

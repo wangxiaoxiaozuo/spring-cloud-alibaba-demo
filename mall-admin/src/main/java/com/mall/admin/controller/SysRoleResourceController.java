@@ -33,12 +33,12 @@ public class SysRoleResourceController {
     @ApiOperation("获取该权限对应的菜单ID")
     public List<Integer> getResourceIdsByRoleId(@PathVariable Integer roleId) {
         LambdaQueryWrapper<SysRoleResource> eq =
-                Wrappers.<SysRoleResource>lambdaQuery()
-                        .eq(SysRoleResource::getRoleId, roleId);
+            Wrappers.<SysRoleResource>lambdaQuery()
+                .eq(SysRoleResource::getRoleId, roleId);
         return sysRoleResourceService.list(eq)
-                .stream()
-                .map(SysRoleResource::getResourceId)
-                .collect(Collectors.toList());
+            .stream()
+            .map(SysRoleResource::getResourceId)
+            .collect(Collectors.toList());
     }
 
 

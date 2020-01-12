@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wangjian
@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @Accessors(chain = true)
-public class SysRole{
+public class SysRole {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,6 +31,11 @@ public class SysRole{
      * 权限名称
      */
     private String roleName;
+
+    /**
+     * 权限码值
+     */
+    private String roleCode;
 
     /**
      * 创建时间

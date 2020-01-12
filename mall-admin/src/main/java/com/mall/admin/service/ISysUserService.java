@@ -1,11 +1,16 @@
 package com.mall.admin.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mall.admin.entity.SysUser;
+import com.mall.admin.entity.param.SysUserDTO;
+import com.mall.admin.entity.vo.SysUserVo;
+
+import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wangjian
@@ -13,7 +18,7 @@ import com.mall.admin.entity.SysUser;
  */
 public interface ISysUserService extends IService<SysUser> {
 
-    void addSysUser(SysUser sysUser);
+    void grantUserRole(Integer userId, List<Integer> roleIds);
 
-    void updateSysUser(SysUser sysUser);
+    IPage<SysUserVo> getSySUserVoByPage(SysUserDTO sysUserDTO);
 }

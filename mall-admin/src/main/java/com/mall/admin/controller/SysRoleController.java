@@ -19,30 +19,27 @@ public class SysRoleController {
 
     private ISysRoleService sysRoleService;
 
+
     @GetMapping("/list")
-    public List<SysRole> getRoleList(){
+    public List<SysRole> getRoleList() {
         return sysRoleService.list();
     }
 
     @PostMapping
-    public void addRole(@Validated @RequestBody SysRole sysRole){
-        sysRoleService.save(sysRole);
+    public void addRole(@Validated @RequestBody SysRole sysRole) {
+        sysRoleService.addRole(sysRole);
     }
 
     @PutMapping("/{roleId}")
-    public void updateRoleById(@Validated @RequestBody SysRole sysRole, @PathVariable Integer roleId){
+    public void updateRoleById(@Validated @RequestBody SysRole sysRole, @PathVariable Integer roleId) {
         sysRole.setRoleId(roleId);
         sysRoleService.updateById(sysRole);
     }
 
     @DeleteMapping("/{roleId}")
-    public void deleteRoleById(@PathVariable Integer roleId){
+    public void deleteRoleById(@PathVariable Integer roleId) {
         sysRoleService.deleteRoleById(roleId);
     }
-
-
-
-
 
 
 }

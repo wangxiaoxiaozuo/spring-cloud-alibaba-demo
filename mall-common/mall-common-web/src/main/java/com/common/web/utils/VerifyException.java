@@ -37,4 +37,10 @@ public class VerifyException {
             throw new MallException(message);
         }
     }
+
+    public static void CollectIsNotNull(Collection collection, String message) {
+        if (!CollectionUtils.isEmpty(collection)) {
+            throw new MallException(message);
+        }
+    }
 }

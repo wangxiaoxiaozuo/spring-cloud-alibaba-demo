@@ -1,11 +1,11 @@
 package com.mall.admin.service;
 
-import com.mall.admin.entity.SysUserRole;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mall.admin.entity.SysUserRole;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wangjian

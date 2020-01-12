@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wangjian
@@ -20,7 +20,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="SysRoleResource对象")
+@ApiModel(value = "SysRoleResource对象")
 public class SysRoleResource implements Serializable {
 
     private static final long serialVersionUID = 1L;

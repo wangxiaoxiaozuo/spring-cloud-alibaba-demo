@@ -11,11 +11,10 @@ public class Test {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(Config.class);
+            new AnnotationConfigApplicationContext(Config.class);
         context.getBean("person");
 
         Person bean = context.getBean(Person.class);
-
 
 
     }
