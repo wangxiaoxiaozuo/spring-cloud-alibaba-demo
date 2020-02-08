@@ -6,20 +6,18 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 10.0.0.204:8840
+        server-addr: 127.0.0.1:8848
     gateway:
+#      discovery:
+#        locator:
+#          enabled: true
       routes:
-        - id: consumer-config
-          uri: lb://consumer-config
-          predicates:
-            - Method=GET,POST,PUT,DELETE
-        - id: consumer-ticker
-          uri: lb://consumer-ticker
-          predicates:
-            - Method=GET,POST,PUT,DELETE
-      discovery:
-        locator:
-          enabled: true
+          - id: abc
+            uri: lb://mall-admin-service
+            predicates:
+             - Path= /admin/**
+            filters:
+                - RewritePath=/admin(?<segment>/?.*), $\{segment}
 management:
   endpoints:
     web:

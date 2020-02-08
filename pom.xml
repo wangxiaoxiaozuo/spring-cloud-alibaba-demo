@@ -19,6 +19,7 @@
         <module>mall-pay-center</module>
         <module>mall-user-center</module>
         <module>mall-common</module>
+        <module>mall-product-manager</module>
     </modules>
 
 
